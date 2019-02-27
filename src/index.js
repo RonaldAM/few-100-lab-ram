@@ -5,6 +5,14 @@ const text = document.getElementById('lblText');
 const tipPercentage = document.getElementById('tipPerentage');
 const tipAmount = document.getElementById('tipAmount');
 const amountDue = document.getElementById('amountDue');
+
+if (billAmount) {
+    billAmount.addEventListener("focusout", function () {
+        console.log('focus lost');
+        this.classList.add("is-invalid");
+    });
+}
+
 [...document.querySelectorAll('.btnTipClass')]
     .forEach(function (item) {
         item.addEventListener('click', function () {
@@ -19,6 +27,9 @@ const amountDue = document.getElementById('amountDue');
             console.log(amountDue);
         })
     });
+function setErrorCondition() {
+
+}
 
 function enableAllTipButtons() {
     [...document.querySelectorAll('.btnTipClass')]
@@ -28,4 +39,4 @@ function enableAllTipButtons() {
 };
 
 console.log('Ready to Party');
-ready(() => { alert('i am ready') });
+ready(() => { });
