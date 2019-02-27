@@ -6,12 +6,14 @@ const tipPercentage = document.getElementById('tipPerentage');
 const tipAmount = document.getElementById('tipAmount');
 const amountDue = document.getElementById('amountDue');
 
-if (billAmount) {
-    billAmount.addEventListener("focusout", function () {
-        console.log('focus lost');
+billAmount.addEventListener("focusout", function () {
+    if (isNaN(this.value)) {
         this.classList.add("is-invalid");
-    });
-}
+    }
+    else {
+        this.classList.remove("is-invalid");
+    }
+});
 
 [...document.querySelectorAll('.btnTipClass')]
     .forEach(function (item) {
@@ -24,12 +26,8 @@ if (billAmount) {
             let tip = parseFloat(tipPerentage.innerHTML) / 100;
             tipAmount.innerHTML = (billAmount.value * tip).toFixed(2);
             amountDue.innerHTML = (Number(tipAmount.innerHTML) + Number(billAmount.value)).toFixed(2);
-            console.log(amountDue);
         })
     });
-function setErrorCondition() {
-
-}
 
 function enableAllTipButtons() {
     [...document.querySelectorAll('.btnTipClass')]
